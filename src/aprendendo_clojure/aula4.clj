@@ -28,3 +28,5 @@
 ;(println (map valor-descontado precos))
 (println "Preços que devem receber desconto:" (filter aplica-desconto? precos))
 (println "Preços com valor descontado:" (map valor-descontado (filter aplica-desconto? precos)))
+(println "Valor total antes do desconto:" (reduce + (filter aplica-desconto? precos)))
+(println "Valor total depois do desconto:" (reduce + (map valor-descontado (filter aplica-desconto? precos))))
