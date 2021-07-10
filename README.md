@@ -15,6 +15,21 @@ Neste repositório tem algumas atividades feitas durante um curso de Clojure par
 (println (conta 0 ["alan" "karynne" "luan" "tainan" "joãozinho" "thalita"]))
 ```
 
+Contador utilizando a função loop.
+
+```clojure
+(defn conta
+  [elementos]
+  (loop
+    [valor 0
+     elementos-restantes elementos]
+    (if (seq elementos-restantes)
+      (recur (inc valor) (next elementos-restantes))
+      valor)))
+
+(println (conta ["alan" "karynne" "luan" "tainan" "joãozinho" "thalita"]))
+```
+
 ## Meu mapa (uma iteração utilizando Tail Recursion)
 
 Esta função simula a função ```map```.
