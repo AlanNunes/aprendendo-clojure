@@ -2,10 +2,10 @@
 
 (defn meu-mapa
   [funcao sequencia]
-  (let [primeiro (first sequencia)
-        resto (rest sequencia)]
-    (when (> (count resto) 0)
-      (meu-mapa funcao resto)
-      (println primeiro))))
+  (let [primeiro (first sequencia)]
+    (when (not (nil? primeiro))
+      (println primeiro)
+      (recur funcao (rest sequencia)))))
 
 (meu-mapa println ["alan" "karynne" "luan" "tainan"])
+(meu-mapa println (range 10000))
