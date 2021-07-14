@@ -20,6 +20,11 @@
        (l.logica/resumo-por-usuario)
        (sort-by :usuario)))
 
+(defn top-2 [resumo] (take 2 resumo))
+
 (let [pedidos (l.db/todos-os-pedidos)
       resumo (resumo-por-usuario-ordenado pedidos)]
-  (println "Resumo" resumo))
+  (println "Resumo:" resumo)
+  (println "Top 2:" (top-2 resumo))
+  (println "> 500:" (filter #(> (:valor-total %) 500) resumo))
+  (println "Alguém gastou mais de 500?" (some #(> (:valor-total %) 500) resumo)))
