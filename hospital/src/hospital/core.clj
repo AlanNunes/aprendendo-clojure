@@ -1,6 +1,6 @@
-(ns hospital.core)
+(ns hospital.core
+  (:use [clojure pprint])
+  (:require [hospital.model :as h.model]))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(let [hopital-do-alan (h.model/novo-hospital)]
+  (pprint hopital-do-alan))
