@@ -21,5 +21,23 @@
     (throw (ex-info "Fila já está cheia!" {:tentando-adicionar pessoa}))))
 
 (defn atende
-  [hospistal departamento]
-  (update hospistal departamento pop))
+  [hospital departamento]
+  (update hospital departamento pop))
+
+(defn proxima
+  [hospital departamento]
+  (-> hospital
+      departamento
+      peek))
+
+(defn transfere
+  [hospital de para]
+  (let [pessoa (proxima hospital de)]
+    (-> hospital
+        (atende de)
+        (chega-em para pessoa))))
+
+(defn atende-completo
+  [hospital departamento]
+  {:paciente (update hospital departamento peek)
+   :fila (update hospital departamento pop)})
