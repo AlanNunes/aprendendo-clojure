@@ -44,7 +44,7 @@
     )
   )
 
-(simula-um-dia-em-paralelo-com-mapv-extraida)
+;(simula-um-dia-em-paralelo-com-mapv-extraida)
 
 (defn beings-believing
   [person-name feeling]
@@ -54,5 +54,27 @@
   [person-name feeling]
   (beings-believing person-name feeling))
 
-(let [function (partial what-a-feeling "Alan")]
-  (mapv function ["happy", "passion", "thrilled", "loved"]))
+;(let [function (partial what-a-feeling "Alan")] (mapv function ["happy", "passion", "thrilled", "loved"]))
+
+(defn simula-um-dia-em-paralelo-com-doseq []
+  (let [hospital (atom (h.model/novo-hospital))
+        pessoas ["111", "222", "333", "444", "555", "666"]]
+    (doseq [pessoa pessoas]
+      (starta-thread-de-chegada hospital pessoa))
+    (.start (Thread. (fn [] (Thread/sleep 2000)
+                       (pprint hospital))))
+    )
+  )
+
+;(simula-um-dia-em-paralelo-com-doseq)
+
+(defn simula-um-dia-em-paralelo-com-dotimes []
+  (let [hospital (atom (h.model/novo-hospital))]
+    (dotimes [pessoa 6]
+      (starta-thread-de-chegada hospital pessoa))
+    (.start (Thread. (fn [] (Thread/sleep 2000)
+                       (pprint hospital))))
+    )
+  )
+
+(simula-um-dia-em-paralelo-com-dotimes)
