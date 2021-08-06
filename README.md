@@ -44,3 +44,22 @@ Esta função simula a função ```map```.
 (meu-mapa println ["alan" "karynne" "luan" "tainan"])
 (meu-mapa println (range 10000))
 ```
+
+## Utilizando defmulti e defmethod
+
+```clojure
+(defmulti hello-world
+          (fn [[id lang]] (get lang :name)))
+
+(defmethod hello-world "C#" [params]
+  (println "System.Console.WriteLine(\"Hello World!\")"))
+
+(defmethod hello-world "Python" [params]
+  (println "print(\"Hello World!\")"))
+
+(defmethod hello-world "Javascript" [params]
+  (println "console.log(\"Hello World!\")"))
+
+(defmethod hello-world "Clojure" [params]
+  (println "(println \"Hello World!\")"))
+```
